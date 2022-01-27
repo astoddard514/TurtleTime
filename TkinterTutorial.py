@@ -1,3 +1,7 @@
+# https://www.youtube.com/watch?v=yQSEXcf6s2I
+# https://www.youtube.com/watch?v=BSfbjrqIw20
+
+
 from tkinter import *
 
 # Root widget, your main window

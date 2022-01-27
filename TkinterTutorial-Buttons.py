@@ -1,5 +1,6 @@
-from tkinter import *
+# https://www.youtube.com/watch?v=yuuDJ3-EdNQ
 
+from tkinter import *
 
 root = Tk() 
 
