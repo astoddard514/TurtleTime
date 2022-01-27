@@ -1,15 +1,33 @@
-# Turtle time game for Luna
+# Turtle time game for kids
 
+from tkinter import *
 import turtle 
 
 # Set up screen
 
+# Button classes
 
-# Shape templates - correspond with shape template buttons/divs and the ability to input parameters for those shapes
+# Label classes
 
-# Custom parameter section - experiment with inputs 
+# Input classes
 
-# Manual button section
+# Global div controls
+  # Penup/Pendown
+  # Color
+  # Arrows 
+
+# Choose a shape div (run button for div)
+  # Triangle
+  # Square
+  # Parallelogram
+  # Star/Spirograph
+  # Spiral
+  # Something cute
+
+# Custom parameter div - experiment with range, length, angle inputs (run button for div)
+  # 
+
+
 
 
 
