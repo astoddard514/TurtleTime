@@ -186,15 +186,16 @@ spiral_btn.grid(row= 4, column= 3, padx=5, pady=5)
 custom_shape = LabelFrame(root, text="BUILD A SHAPE", font= 'Helvetica 15 bold', padx=25, pady= 25, background= '#340f4f', fg= "white", labelanchor= 'n') # padding inside of frame
 custom_shape.grid(column= 1, row=1, padx = 12)
 
-custom_sides = Entry(custom_shape, text= "How many sides?", font= ft, width= 30)  
+# need to add labels for these input boxes
+custom_sides = Entry(custom_shape, font= ft, width= 30)  
 custom_sides.grid(row= 0, column= 0, padx=10, pady=10)
 custom_sides.insert(0, "Choose # of sides: 0-100 ") 
 
-custom_length = Entry(custom_shape, text= "How long are the sides?", font= ft, width= 30)  
+custom_length = Entry(custom_shape, font= ft, width= 30)  
 custom_length.grid(row= 1, column= 0, padx=10, pady=10)
 custom_length.insert(0, "Choose length of lines: 0-300")
 
-custom_angle = Entry(custom_shape, text= "What angle?", font= ft, width= 30)  
+custom_angle = Entry(custom_shape, font= ft, width= 30)  
 custom_angle.grid(row= 2, column= 0, padx=10, pady=10)
 custom_angle.insert(0, "Choose angle: 0-360")
 
