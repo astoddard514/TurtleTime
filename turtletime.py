@@ -14,7 +14,7 @@ import turtle
 # Set up screen
 root = Tk()
 root.title('Turtle Time')
-root.geometry('1500x800+100+100')
+root.geometry('1550x880+100+100')
 root.config(bg= '#333366')
 
 class Shapes:
@@ -67,7 +67,7 @@ class Shapes:
             for color in ('purple', 'red', 'pink',
                           'green', 'blue', 'indigo'):
                 tansy.color(color)          
-                tansy.circle(100)
+                tansy.circle(50)
                 tansy.left(10)
         
     def cute():
@@ -170,7 +170,7 @@ class Shapes:
             tansy.up()
 
         # draw face
-        tansy.fillcolor('yellow')
+        tansy.fillcolor('orange')
         tansy.begin_fill()
         tansy.circle(100)
         tansy.end_fill()
@@ -250,14 +250,14 @@ ft2 = 'Helvetica 10 bold'
     
 
 # Canvas
-canvas = Canvas(root, width= 800, height= 700)
-canvas.grid(row=0, rowspan= 3, column=0, padx=50, pady=50)
+canvas_frame = LabelFrame(root, text="TURTLE TIME", font= 'Helvetica 30 bold', padx=25, pady=25, background= '#340f4f', fg= "white", labelanchor= 'n') # padding inside of frame
+canvas_frame.grid(column= 0, row=0, rowspan= 3, padx= 50, pady= 50)
 
-game_label = Label(canvas, text="Turtle Time", font= 'Helvetica 30 bold', fg= "green", background= "white")
-game_label.place(relx= 0.5, y=25, anchor = 'n')
+canvas = Canvas(canvas_frame, width= 700, height= 625)
+canvas.grid(row=0, column=0, padx=25, pady=25)
 
 clear_btn= ttk.Button(canvas, style= 'TButton', text="Clear Canvas", command = Controls.clear_canvas)
-clear_btn.place(x= 650, y= 650)
+clear_btn.place(x= 550, y= 575)
 
 # Create turtle
 tansy= turtle.RawTurtle(canvas)
@@ -270,7 +270,7 @@ tansy_default()
 
 # Draw a Shape Frame
 draw_a_shape = LabelFrame(root, text="DRAW A SHAPE", font= 'Helvetica 15 bold', padx=25, pady=25, background= '#340f4f', fg= "white", labelanchor= 'n') # padding inside of frame
-draw_a_shape.grid(column= 1, row=0,)
+draw_a_shape.grid(column= 1, row=0, padx = 12, pady= 50 )
 
 triangle_btn= ttk.Button(draw_a_shape, text= 'Triangle', style= 'TButton', command = Shapes.triangle)
 square_btn= ttk.Button(draw_a_shape, text= 'Square', style= 'TButton', command = Shapes.square)
@@ -290,10 +290,10 @@ triangle_btn.grid(row= 1, column=1, padx=5, pady=5)
 square_btn.grid(row= 2, column=1, padx=5, pady=5)
 circle_btn.grid(row= 3, column=1, padx=5, pady=5)
 ellipse_btn.grid(row= 4, column=1, padx=5, pady=5)
-pentagon_btn.grid(row= 1, column= 2, padx=5, pady=5)
-hexagon_btn.grid(row= 2, column= 2, padx=5, pady=5)
-septagon_btn.grid(row= 3, column= 2, padx=5, pady=5)
-octagon_btn.grid(row= 4, column= 2, padx=5, pady=5)
+pentagon_btn.grid(row= 1, column= 2, padx=25, pady=5)
+hexagon_btn.grid(row= 2, column= 2, padx=25, pady=5)
+septagon_btn.grid(row= 3, column= 2, padx=25, pady=5)
+octagon_btn.grid(row= 4, column= 2, padx=25, pady=5)
 star_btn.grid(row= 1, column= 3, padx=5, pady=5)
 spirograph_btn.grid(row= 2, column= 3, padx=5, pady=5)
 cute_btn.grid(row= 3, column= 3, padx=5, pady=5)
@@ -301,8 +301,8 @@ smiley_btn.grid(row= 4, column= 3, padx=5, pady=5)
 
 # Custom Shape Frame
 
-custom_shape = LabelFrame(root, text="BUILD A SHAPE", font= 'Helvetica 15 bold', padx=20, pady= 20, background= '#340f4f', fg= "white", labelanchor= 'n') # padding inside of frame
-custom_shape.grid(column= 1, row=1)
+custom_shape = LabelFrame(root, text="BUILD A SHAPE", font= 'Helvetica 15 bold', padx=25, pady= 25, background= '#340f4f', fg= "white", labelanchor= 'n') # padding inside of frame
+custom_shape.grid(column= 1, row=1, padx = 12)
 
 custom_sides = Entry(custom_shape, text= "How many sides?", font= ft, width= 30)  
 custom_sides.grid(row= 0, column= 0, padx=10, pady=10)
@@ -328,8 +328,8 @@ angles_reference.place(relx= .721, rely= .3)
 
 # Controls Frame
 
-controls = LabelFrame(root, text="CONTROLS", font= 'Helvetica 15 bold',  background= '#340f4f', fg= "white", labelanchor= 'n', padx= 20, pady= 20) # padding inside of frame
-controls.grid(column= 1, row=2)
+controls = LabelFrame(root, text="CONTROLS", font= 'Helvetica 15 bold',  background= '#340f4f', fg= "white", labelanchor= 'n', padx= 25, pady= 25) # padding inside of frame
+controls.grid(column= 1, row=2, padx = 12, pady= 50)
 
 colors= ['red', 'purple', 'yellow',
         'pink', 'blue', 'lightblue', 
@@ -350,18 +350,18 @@ pendown_btn= ttk.Button(controls, text= 'Pen Down', style= 'TButton', width= 9, 
 foward_btn= ttk.Button(controls, text= 'Forward', style= 'TButton', width= 10, command= Controls.forward)
 backward_btn= ttk.Button(controls, text= 'Backward', style= 'TButton', width= 10, command= Controls.backward)
 
-penup_btn.grid(row= 0, column= 1, padx= 5, pady=10)
-pendown_btn.grid(row= 1, column= 1, padx= 5, pady= 10)
+penup_btn.grid(row= 0, column= 1, padx= 25, pady=10)
+pendown_btn.grid(row= 1, column= 1, padx= 25, pady= 10)
 foward_btn.grid(row= 0, column=3, padx=5, pady= 10)
 backward_btn.grid(row= 1, column=3, padx= 5, pady= 10)
 
 
 left_turn_arrow = Image.open(r"C:/Users/angel/Desktop/Coding/Turtle game/TurtleTime/Images/LeftRotateArrow.png")
-resize_left_arrow = left_turn_arrow.resize((50, 50))
+resize_left_arrow = left_turn_arrow.resize((30, 30))
 left_arrow = ImageTk.PhotoImage(resize_left_arrow)
 
 right_turn_arrow = Image.open(r"C:/Users/angel/Desktop/Coding/Turtle game/TurtleTime/Images/RightRotateArrow.png")
-resize_right_arrow = right_turn_arrow.resize((50, 50))
+resize_right_arrow = right_turn_arrow.resize((30, 30))
 right_arrow = ImageTk.PhotoImage(resize_right_arrow)
 
 
