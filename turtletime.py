@@ -39,8 +39,6 @@ class Shapes:
     def octogon():
         Shapes.formula(8)
 
-    radius = 50
-
     def circle():
         tansy.pendown()
         radius = 50
@@ -54,159 +52,45 @@ class Shapes:
             tansy.circle(radius, 90)
             tansy.circle(radius//2, 90)
 
-        
-    def star(): # include user inputs for sides/angles?
+    def star(): 
         tansy.pendown()
         for i in range(5):
             tansy.forward(100)
             tansy.right(144)
 
-    def spirograph(): # fancy design with options for inputs?
+    def spiral():
         tansy.pendown()
+        tansy.speed(0)
+        side = 200
+        for i in range(100):
+            tansy.forward(side)
+            tansy.left(360/5)
+            side = side-4
+            
+    def spirograph(): 
+        tansy.pendown()
+        tansy.speed(0)
         for i in range(6):
             for color in ('purple', 'red', 'pink',
                           'green', 'blue', 'indigo'):
                 tansy.color(color)          
                 tansy.circle(50)
                 tansy.left(10)
-        
-    def cute():
 
+    def spiral_web():
         tansy.pendown()
+        tansy.speed(0)
+        
+        colors = ['purple', 'red', 'pink',
+                  'green', 'blue', 'indigo']
 
-        # https://www.geeksforgeeks.org/draw-panda-using-turtle-graphics-in-python/
-
-        # Defining method to draw a colored circle
-        # with a dynamic radius
-        def ring(col, rad):
- 
-            # Set the fill
-            tansy.fillcolor(col)
- 
-            # Start filling the color
-            tansy.begin_fill()
- 
-            # Draw a circle
-            tansy.circle(rad)
- 
-            # Ending the filling of the color
-            tansy.end_fill()
-
-        ##### Draw ears #####
-        # Draw first ear
-        tansy.up()
-        tansy.setpos(-35, 95)
-        tansy.down
-        ring('black', 15)
-        
-        # Draw second ear
-        tansy.up()
-        tansy.setpos(35, 95)
-        tansy.down()
-        ring('black', 15)
-        
-        ##### Draw face #####
-        tansy.up()
-        tansy.setpos(0, 35)
-        tansy.down()
-        ring('white', 40)
-        
-        ##### Draw eyes black #####
-        
-        # Draw first eye
-        tansy.up()
-        tansy.setpos(-18, 75)
-        tansy.down
-        ring('black', 8)
-        
-        # Draw second eye
-        tansy.up()
-        tansy.setpos(18, 75)
-        tansy.down()
-        ring('black', 8)
-        
-        ##### Draw eyes white #####
-        
-        # Draw first eye
-        tansy.up()
-        tansy.setpos(-18, 77)
-        tansy.down()
-        ring('white', 4)
-        
-        # Draw second eye
-        tansy.up()
-        tansy.setpos(18, 77)
-        tansy.down()
-        ring('white', 4)
-        
-        ##### Draw nose #####
-        tansy.up()
-        tansy.setpos(0, 55)
-        tansy.down
-        ring('black', 5)
-        
-        ##### Draw mouth #####
-        tansy.up()
-        tansy.setpos(0, 55)
-        tansy.down()
-        tansy.right(90)
-        tansy.circle(5, 180)
-        tansy.up()
-        tansy.setpos(0, 55)
-        tansy.down()
-        tansy.left(360)
-        tansy.circle(5, -180)
-        tansy.penup()
-        tansy.forward(100)
+        # make spiral_web
+        for x in range(200):
+            tansy.pencolor(colors[x%6]) # setting color
+            tansy.width(x/100 + 2) # setting width
+            tansy.forward(x) # moving forward
+            tansy.left(59) # moving left
     
-    def smiley():
-        tansy.pendown()
-        def eye(col, rad):
-            tansy.down()
-            tansy.fillcolor(col)
-            tansy.begin_fill()
-            tansy.circle(rad)
-            tansy.end_fill()
-            tansy.up()
-
-        # draw face
-        tansy.fillcolor('orange')
-        tansy.begin_fill()
-        tansy.circle(100)
-        tansy.end_fill()
-        tansy.up()
-        
-        # draw eyes
-        tansy.goto(-40, 120)
-        eye('white', 15)
-        tansy.goto(-37, 125)
-        eye('black', 5)
-        tansy.goto(40, 120)
-        eye('white', 15)
-        tansy.goto(40, 125)
-        eye('black', 5)
-        
-        # draw nose
-        tansy.goto(0, 75)
-        eye('black', 8)
-        
-        # draw mouth
-        tansy.goto(-40, 85)
-        tansy.down()
-        tansy.right(90)
-        tansy.circle(40, 180)
-        tansy.up()
-        
-        # draw tongue
-        tansy.goto(-10, 45)
-        tansy.down()
-        tansy.right(180)
-        tansy.fillcolor('red')
-        tansy.begin_fill()
-        tansy.circle(10, 180)
-        tansy.end_fill()
-
-
 class Custom:
 
     def custom_draw():
@@ -248,7 +132,6 @@ btn_style= ttk.Style()
 btn_style.configure('TButton', background= 'black', forground= 'black', font=ft)
 ft2 = 'Helvetica 10 bold'
     
-
 # Canvas
 canvas_frame = LabelFrame(root, text="TURTLE TIME", font= 'Helvetica 30 bold', padx=25, pady=25, background= '#340f4f', fg= "white", labelanchor= 'n') # padding inside of frame
 canvas_frame.grid(column= 0, row=0, rowspan= 3, padx= 50, pady= 50)
@@ -282,9 +165,8 @@ septagon_btn= ttk.Button(draw_a_shape, text= 'Septagon', style= 'TButton', comma
 octagon_btn= ttk.Button(draw_a_shape, text= 'Octagon', style= 'TButton', command = Shapes.octogon)
 star_btn= ttk.Button(draw_a_shape, text= 'Star', style= 'TButton', command = Shapes.star)
 spirograph_btn= ttk.Button(draw_a_shape, text= 'Spirograph', style= 'TButton', command = Shapes.spirograph)
-cute_btn= ttk.Button(draw_a_shape, text= 'Cute', style= 'TButton', command = Shapes.cute)
-smiley_btn= ttk.Button(draw_a_shape, text= 'Smile', style= 'TButton', command = Shapes.smiley)
-
+spiral_web_btn= ttk.Button(draw_a_shape, text= 'Spiral Web', style= 'TButton', command = Shapes.spiral_web)
+spiral_btn= ttk.Button(draw_a_shape, text= 'Spiral', style= 'TButton', command = Shapes.spiral)
 
 triangle_btn.grid(row= 1, column=1, padx=5, pady=5)
 square_btn.grid(row= 2, column=1, padx=5, pady=5)
@@ -296,8 +178,8 @@ septagon_btn.grid(row= 3, column= 2, padx=25, pady=5)
 octagon_btn.grid(row= 4, column= 2, padx=25, pady=5)
 star_btn.grid(row= 1, column= 3, padx=5, pady=5)
 spirograph_btn.grid(row= 2, column= 3, padx=5, pady=5)
-cute_btn.grid(row= 3, column= 3, padx=5, pady=5)
-smiley_btn.grid(row= 4, column= 3, padx=5, pady=5)
+spiral_web_btn.grid(row= 3, column= 3, padx=5, pady=5)
+spiral_btn.grid(row= 4, column= 3, padx=5, pady=5)
 
 # Custom Shape Frame
 
@@ -331,6 +213,7 @@ angles_reference.place(relx= .721, rely= .3)
 controls = LabelFrame(root, text="CONTROLS", font= 'Helvetica 15 bold',  background= '#340f4f', fg= "white", labelanchor= 'n', padx= 25, pady= 25) # padding inside of frame
 controls.grid(column= 1, row=2, padx = 12, pady= 50)
 
+
 colors= ['red', 'purple', 'yellow',
         'pink', 'blue', 'lightblue', 
         'brown', 'white', 'orange', 
@@ -344,6 +227,7 @@ colorbox['state']= 'readonly'
 
 set_color_btn= ttk.Button(controls, text= "Set Color", width= 9, command= Controls.set_color)
 set_color_btn.grid(row= 1, column= 0)
+
 
 penup_btn= ttk.Button(controls, text= 'Pen Up', style= 'TButton', width= 9, command= Controls.penup)
 pendown_btn= ttk.Button(controls, text= 'Pen Down', style= 'TButton', width= 9, command= Controls.pendown)
@@ -364,12 +248,10 @@ right_turn_arrow = Image.open(r"C:/Users/angel/Desktop/Coding/Turtle game/Turtle
 resize_right_arrow = right_turn_arrow.resize((30, 30))
 right_arrow = ImageTk.PhotoImage(resize_right_arrow)
 
-
 left_turn_btn = ttk.Button(controls, image= left_arrow, command= Controls.rotate_left)
 left_turn_btn.grid(row= 0, rowspan= 2,  column= 2, padx= 5)
 right_turn_btn = ttk.Button(controls, image= right_arrow, command= Controls.rotate_right)
 right_turn_btn.grid(row= 0, rowspan= 2, column= 4, padx= 5)
-
 
 
 root.mainloop()
