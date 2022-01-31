@@ -7,6 +7,7 @@
 from asyncio.windows_events import NULL
 from tkinter import *
 from tkinter import ttk
+from PIL import Image, ImageTk
 import turtle
 
 
@@ -72,43 +73,57 @@ class Custom:
 
 class Controls:
 
-    def forward(self):
-        pass
-    def backward(self):
-        pass
-    def right(self):
-        pass
-    def left(self):
-        pass
+    def set_color():
+        tansy.color('<<ComboboxSelected>>')
+
+    def penup():
+        tansy.penup()
+    def pendown():
+        tansy.pendown()
+
+    def forward():
+        tansy.forward(100)
+    def backward():
+        tansy.backward(100)
+
+    def rotate_left():
+        tansy.left(20)
+    def rotate_right():
+        tansy.right(20)
 
     def clear_canvas():
         tansy.clear()
         tansy_default()
 
+# Button styling
+
+ft= 'Helvetica 15 bold'
+btn_style= ttk.Style()
+btn_style.configure('TButton', background= 'black', forground= 'black', font=ft)
+    
+
 # Canvas
 canvas = Canvas(root, width= 800, height= 700)
 canvas.grid(row=0, rowspan= 3, column=0, padx=50, pady=50)
 
+game_label = Label(canvas, text="Turtle Time", font= 'Helvetica 30 bold', fg= "green", background= "white")
+game_label.place(relx= 0.5, y=50, anchor = 'n')
+
 clear_btn= Button(canvas, text="Clear Canvas", command = Controls.clear_canvas)
 clear_btn.place(x= 650, y= 650)
+
 
 # Create turtle
 tansy= turtle.RawTurtle(canvas)
 def tansy_default():
     tansy.shape("turtle")
     tansy.resizemode("auto")
-    tansy.width(5)
+    tansy.width(3)
     tansy.color("green")
 tansy_default()
 
-# Buttons
-
-ft= 'Helvetica 15 bold'
-btn_style= ttk.Style()
-btn_style.configure('TButton', background= 'black', forground= 'black', font=ft)
-
 # Draw a Shape Frame
-draw_a_shape = LabelFrame(root, text="DRAW A SHAPE", padx=50, pady=50, background= '#340f4f') # padding inside of frame
+draw_a_shape = LabelFrame(root, text="DRAW A SHAPE", font= 'Helvetica 15 bold', padx=25, pady=25, background= '#340f4f', fg= "white", labelanchor= 'n') # padding inside of frame
 draw_a_shape.grid(column= 1, row=0,)
 
 triangle_btn= ttk.Button(draw_a_shape, text= 'Triangle', style= 'TButton', command = Shapes.triangle)
@@ -138,7 +153,7 @@ cute_btn.grid(row= 3, column= 3)
 
 # Build a Shape Frame
 
-build_a_shape = LabelFrame(root, text="BUILD A SHAPE", padx=50, pady=50, background= '#340f4f') # padding inside of frame
+build_a_shape = LabelFrame(root, text="BUILD A SHAPE", font= 'Helvetica 15 bold', padx=25, pady=25, background= '#340f4f', fg= "white", labelanchor= 'n') # padding inside of frame
 build_a_shape.grid(column= 1, row=1)
 
 custom_sides = Entry(root)  
@@ -172,35 +187,44 @@ cute_btn.grid(row= 3, column= 3)
 
 # Controls Frame
 
-controls = LabelFrame(root, text="CONTROLS", padx=50, pady=50, background= '#340f4f') # padding inside of frame
+controls = LabelFrame(root, text="CONTROLS", font= 'Helvetica 15 bold',  background= '#340f4f', fg= "white", labelanchor= 'n', padx= 25, pady= 25) # padding inside of frame
 controls.grid(column= 1, row=2)
 
 colors= ['red', 'purple', 'yellow',
         'pink', 'blue', 'lightblue', 
         'brown', 'white', 'orange']
 
-pen_color= ttk.Combobox(controls, values= colors)
-pen_color.config(font= ft, width= 10)
-pen_color.set('Change Color')
-pen_color.grid(row= 1, column= 1)
-pen_color['state']= 'readonly'
+cbox= ttk.Combobox(controls, values= colors)
+cbox.config(font= ft, width= 8)
+cbox.set('Color')
+cbox.grid(row= 1, column= 1, padx= 20, pady= 10)
+cbox['state']= 'readonly'
+# cbox.bind('<<ComboboxSelected>>', command= Controls.set_color)
 
-penup_btn= ttk.Button(controls, text= 'Pen Up', style= 'TButton')
-pendown_btn= ttk.Button(controls, text= 'Pen Up', style= 'TButton')
+penup_btn= ttk.Button(controls, text= 'Pen Up', style= 'TButton', width= 7, command= Controls.penup)
+pendown_btn= ttk.Button(controls, text= 'Pen Down', style= 'TButton', width= 7, command= Controls.pendown)
+foward_btn= ttk.Button(controls, text= 'Forward', style= 'TButton', width= 8, command= Controls.forward)
+backward_btn= ttk.Button(controls, text= 'Backward', style= 'TButton', width= 9, command= Controls.backward)
 
-foward_btn= ttk.Button(controls, text= 'Forward', style= 'TButton')
-backward_btn= ttk.Button(controls, text= 'Backward', style= 'TButton')
-right_btn= ttk.Button(controls, text= 'Left', style= 'TButton')
-left_btn= ttk.Button(controls, text= 'Right', style= 'TButton')
-
-penup_btn.grid(row= 2, column= 1)
-pendown_btn.grid(row= 3, column= 1)
-foward_btn.grid(row= 1, column=3)
-backward_btn.grid(row= 3, column=3)
-left_btn.grid(row= 2, column=2)
-right_btn.grid(row= 2, column=4)
+penup_btn.grid(row= 2, column= 1, padx= 25, pady=10)
+pendown_btn.grid(row= 3, column= 1, padx= 25, pady= 10)
+foward_btn.grid(row= 2, column=4, padx=10, pady= 10)
+backward_btn.grid(row= 3, column=4, padx= 10, pady= 10)
 
 
+left_turn_arrow = Image.open(r"C:/Users/angel/Desktop/Coding/Turtle game/TurtleTime/Images/LeftRotateArrow.png")
+resize_left_arrow = left_turn_arrow.resize((50, 50))
+left_arrow = ImageTk.PhotoImage(resize_left_arrow)
+
+right_turn_arrow = Image.open(r"C:/Users/angel/Desktop/Coding/Turtle game/TurtleTime/Images/RightRotateArrow.png")
+resize_right_arrow = right_turn_arrow.resize((50, 50))
+right_arrow = ImageTk.PhotoImage(resize_right_arrow)
+
+
+left_turn_btn = ttk.Button(controls, image= left_arrow, command= Controls.rotate_left)
+left_turn_btn.grid(row= 2, rowspan= 2,  column= 3)
+right_turn_btn = ttk.Button(controls, image= right_arrow, command= Controls.rotate_right)
+right_turn_btn.grid(row= 2, rowspan= 2, column= 5)
 
 
 
