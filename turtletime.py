@@ -1,4 +1,4 @@
-# Turtle time game for kids
+ # Turtle time game for kids
 
 # Learning resources: 
 # https://www.youtube.com/watch?v=yQSEXcf6s2I&list=PLCC34OHNcOtoC6GglhF3ncJ5rLwQrLGnV&index=1
@@ -17,6 +17,7 @@ root.title('Turtle Time')
 root.geometry('1550x880+100+100')
 root.config(bg= '#333366')
 
+# Set up shape functions and tool dashboard functions
 class Shapes:
 
     def formula(sides):
@@ -125,6 +126,10 @@ class Controls:
         tansy.clear()
         tansy_default()
 
+    def get_turtle():
+        tansy.setpos(0, 0)
+        tansy_default()
+
 # Button styling
 
 ft= 'Helvetica 15 bold'
@@ -141,6 +146,9 @@ canvas.grid(row=0, column=0, padx=25, pady=25)
 
 clear_btn= ttk.Button(canvas, style= 'TButton', text="Clear Canvas", command = Controls.clear_canvas)
 clear_btn.place(x= 550, y= 575)
+
+get_turtle_btn= ttk.Button(canvas, style= 'TButton', text="Get Turtle", command = Controls.get_turtle)
+clear_btn.place(x= 450, y= 575)
 
 # Create turtle
 tansy= turtle.RawTurtle(canvas)
