@@ -148,7 +148,7 @@ clear_btn= ttk.Button(canvas, style= 'TButton', text="Clear Canvas", command = C
 clear_btn.place(x= 550, y= 575)
 
 get_turtle_btn= ttk.Button(canvas, style= 'TButton', text="Get Turtle", command = Controls.get_turtle)
-clear_btn.place(x= 450, y= 575)
+get_turtle_btn.place(x= 400, y= 575)
 
 # Create turtle
 tansy= turtle.RawTurtle(canvas)
