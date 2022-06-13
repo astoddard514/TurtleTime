@@ -1,1 +1,1 @@
-worker: python turtletime.py
+web: python turtletime.py
