@@ -4,7 +4,8 @@
 # https://www.youtube.com/watch?v=yQSEXcf6s2I&list=PLCC34OHNcOtoC6GglhF3ncJ5rLwQrLGnV&index=1
 # https://www.youtube.com/watch?v=lETQ3mvuzkQ
 
-import tkinter
+from tkinter import *
+from tkinter import ttk
 from PIL import Image, ImageTk
 import turtle
 
